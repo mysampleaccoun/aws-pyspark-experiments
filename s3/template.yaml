@@ -9,37 +9,37 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
 
-  CodePipelineRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: CodePipelineServiceRole
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: codepipeline.amazonaws.com
-            Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
-        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
-        - arn:aws:iam::aws:policy/AmazonS3FullAccess
-      Policies:
-        - PolicyName: CodePipelineAdditionalPermissions
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - iam:GetRole
-                  - iam:PassRole
-                Resource: "*"
+  # CodePipelineRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     RoleName: CodePipelineServiceRole
+  #     AssumeRolePolicyDocument:
+  #       Version: "2012-10-17"
+  #       Statement:
+  #         - Effect: Allow
+  #           Principal:
+  #             Service: codepipeline.amazonaws.com
+  #           Action: sts:AssumeRole
+  #     ManagedPolicyArns:
+  #       - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
+  #       - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+  #       - arn:aws:iam::aws:policy/AmazonS3FullAccess
+  #     Policies:
+  #       - PolicyName: CodePipelineAdditionalPermissions
+  #         PolicyDocument:
+  #           Version: "2012-10-17"
+  #           Statement:
+  #             - Effect: Allow
+  #               Action:
+  #                 - iam:GetRole
+  #                 - iam:PassRole
+  #               Resource: "*"
 
 Outputs:
   BucketName:
     Value: !Ref MyS3Bucket
     Description: "The name of the created S3 bucket"
 
-  RoleName:
-    Description: Name of the IAM Role created for CodePipeline
-    Value: !Ref CodePipelineRole
+  # RoleName:
+  #   Description: Name of the IAM Role created for CodePipeline
+  #   Value: !Ref CodePipelineRole
