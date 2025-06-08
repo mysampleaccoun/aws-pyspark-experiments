@@ -7,7 +7,7 @@ phases:
   build:
     commands:
       - echo "Starting S3 upload step..."
-      - aws s3 cp input_file/employees.csv s3://my-pyspark-01/
+      - aws s3 cp input_file/employees.csv s3://my-pyspark-s3-bucket/
 artifacts:
   files:
     - '**/*'
