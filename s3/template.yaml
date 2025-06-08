@@ -9,7 +9,7 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
 
-   CodePipelineRole:
+  CodePipelineRole:
     Type: AWS::IAM::Role
     Properties:
       RoleName: CodePipelineServiceRole
