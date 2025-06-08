@@ -8,7 +8,7 @@ spark = SparkSession.builder \
     .appName("PySpark Hands-On") \
     .getOrCreate()
 # read data
-df= spark.read.csv("s3://my-pyspark-02/employees.csv",header=True)
+df= spark.read.csv("s3://my-pyspark/employees.csv",header=True)
 df=df.dropna()
 
 
@@ -23,9 +23,9 @@ new_df=new_df.withColumn("HIGHEST_SALARY",new_df["RANK"]==1)
 new_df = new_df.orderBy(desc("TOTAL_COMPENSATION")).limit(10)
 
 # Show data
-new_df.write.mode("overwrite").option("header", True).csv("s3://my-pyspark-02/output/employee_summary")
-avg_salary.write.mode("overwrite").option("header", True).csv("s3://my-pyspark-02/output/department_salary_avg")
-count.write.mode("overwrite").option("header", True).csv("s3://my-pyspark-02/output/count")
+new_df.write.mode("overwrite").option("header", True).csv("s3://my-pyspark/output/employee_summary")
+avg_salary.write.mode("overwrite").option("header", True).csv("s3://my-pyspark/output/department_salary_avg")
+count.write.mode("overwrite").option("header", True).csv("s3://my-pyspark/output/count")
 
 
 # Stop Spark
