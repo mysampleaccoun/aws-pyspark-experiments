@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11  # or another version you prefer
+  build:
+    commands:
+      - echo "Starting S3 upload step..."
+      - aws s3 cp input_file/employees.csv s3://my-pyspark-01/
+artifacts:
+  files:
+    - '**/*'
