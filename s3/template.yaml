@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "CloudFormation template to create an S3 bucket"
+Description: "CloudFormation template to create an S3 bucket and CodePipeline IAM Role"
 
 Resources:
   MyS3Bucket:
@@ -23,12 +23,23 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSCodePipelineFullAccess
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
-        - arn:aws:iam::aws:policy/AmazonS3FullAccess      
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      Policies:
+        - PolicyName: CodePipelineAdditionalPermissions
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:GetRole
+                  - iam:PassRole
+                Resource: "*"
 
 Outputs:
   BucketName:
     Value: !Ref MyS3Bucket
     Description: "The name of the created S3 bucket"
+
   RoleName:
     Description: Name of the IAM Role created for CodePipeline
-    Value: !Ref CodePipelineRole  
+    Value: !Ref CodePipelineRole
